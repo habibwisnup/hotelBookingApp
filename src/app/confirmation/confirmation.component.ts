@@ -40,10 +40,6 @@ export class ConfirmationComponent {
     this.router.navigate(['/home']);
   }
 
-  goToProfile(): void {
-    this.router.navigate(['/profile']);
-  }
-
   get nextDay(): string | null {
     if (!this.searchInfo?.checkInDate) return null;
 
@@ -51,18 +47,5 @@ export class ConfirmationComponent {
     date.setDate(date.getDate() + 1);
 
     return date.toISOString().split('T')[0];
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  hideSidebar() {
-    this.sidebarOpen = false;
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
   }
 }

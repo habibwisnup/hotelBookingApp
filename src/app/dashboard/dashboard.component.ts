@@ -60,23 +60,4 @@ export class DashboardComponent implements OnInit {
   goToHome() {
     this.router.navigate(['/home']);
   }
-
-  OnHome() {
-    this.router.navigate(['/home']);
-  }
-
-  OnDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  OnProfile() {
-    this.router.navigate(['/profile']);
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-  hideSidebar() {
-    this.sidebarOpen = false;
-  }
 }
