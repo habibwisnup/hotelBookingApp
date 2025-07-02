@@ -34,28 +34,4 @@ export class HomeComponent {
     }));
     this.router.navigate(['/rooms']);
   }
-  OnHome() {
-    this.router.navigate(['/home']);
-  }
-
-  OnDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  OnProfile() {
-    this.router.navigate(['/profile']);
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  hideSidebar() {
-    this.sidebarOpen = false;
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-  }
 }

@@ -29,6 +29,8 @@ export class HeaderComponent {
 
   logout(): void {
     this.sidebarOpen = false;
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
     console.log('User logged out');
   }
 

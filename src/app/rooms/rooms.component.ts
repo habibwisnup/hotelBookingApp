@@ -58,33 +58,4 @@ export class RoomsComponent implements OnInit {
     date.setDate(date.getDate() + 1);
     return date.toISOString().split('T')[0];
   }
-
-  OnHome() {
-    this.router.navigate(['/home']);
-  }
-
-  OnDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  OnProfile() {
-    this.router.navigate(['/profile']);
-  }
-
-  goBack() {
-    this.location.back();
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  hideSidebar() {
-    this.sidebarOpen = false;
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-  }
 }

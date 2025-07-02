@@ -41,18 +41,6 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  OnHome() {
-    this.router.navigate(['/home']);
-  }
-
-  OnDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  OnProfile() {
-    this.router.navigate(['/profile']);
-  }
-
   updateProfile() {
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     const regRole = JSON.parse(localStorage.getItem('registeredUserRole') || '{}');
@@ -63,13 +51,5 @@ export class ProfileComponent implements OnInit {
     }
     this.showSuccess = true;
     setTimeout(() => this.showSuccess = false, 1200);
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  hideSidebar() {
-    this.sidebarOpen = false;
   }
 }

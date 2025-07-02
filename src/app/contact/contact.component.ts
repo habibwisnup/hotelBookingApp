@@ -44,35 +44,6 @@ export class ContactComponent {
 
     return date.toISOString().split('T')[0];
   }
-  
-  OnHome() {
-    this.router.navigate(['/home']);
-  }
-
-  OnDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  OnProfile() {
-    this.router.navigate(['/profile']);
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  hideSidebar() {
-    this.sidebarOpen = false;
-  }
-
-  goBack() {
-    window.history.back();
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-  }
 
   fillRegisteredData() {
     if (this.useRegisteredData) {
