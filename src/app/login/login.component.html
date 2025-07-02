@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <input [(ngModel)]="email" type="email" placeholder="Email" (keydown.enter)="login()">
+  <input [(ngModel)]="password" type="password" placeholder="Password" (keydown.enter)="login()">
+  <button (click)="login()" [disabled]="loading">
+    <span *ngIf="!loading">Login</span>
+    <span *ngIf="loading">Loading...</span>
+  </button>
+  <a (click)="OnRegister()">Register</a>
+</div>
+
+<div class="popup-success" *ngIf="showSuccess">
+  Login Success!
+</div>
+<div class="popup-error" *ngIf="showError">
+  {{ errorMessage }}
+</div>

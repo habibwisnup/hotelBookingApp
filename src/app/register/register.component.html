@@ -1,0 +1,24 @@
+<div class="register-container">
+  <h2>Register</h2>
+  <input [(ngModel)]="name" type="name" placeholder="Name" (keydown.enter)="register()">
+  <input [(ngModel)]="address" type="address" placeholder="Address" (keydown.enter)="register()">
+  <input [(ngModel)]="email" type="email" placeholder="Email" (keydown.enter)="register()">
+  <input [(ngModel)]="password" type="password" placeholder="Password" (keydown.enter)="register()">
+  <div class="role-group">
+    <label>
+      <input type="checkbox" [(ngModel)]="isAdmin"> Did you register as admin??
+    </label>
+  </div>
+  <button (click)="register()" [disabled]="loading">
+    <span *ngIf="!loading">Register</span>
+    <span *ngIf="loading">Loading...</span>
+  </button>
+  <a (click)="OnLogin()">Login</a>
+</div>
+
+<div class="popup-success" *ngIf="showSuccess">
+  Registrasi Success!
+</div>
+<div class="popup-error" *ngIf="showError">
+  {{ errorMessage }}
+</div>

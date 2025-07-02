@@ -1,0 +1,105 @@
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.profile-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  width: 350px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #007bff;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.role {
+  margin: 1rem 0;
+  font-weight: 500;
+  color: #666;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.update-btn {
+  background: linear-gradient(90deg, #ff3b3b 0%, #ff7b7b 100%);
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff7b7b 0%, #ff3b3b 100%);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.popup-success {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: #28a745;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  z-index: 9999;
+  animation: fadeInOut 1.2s;
+}
+
+

@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="steps">
+  <div class="step active">1 Search</div>
+  <div class="step active">2 Select Room</div>
+  <div class="step active">3 Contact Information</div>
+  <div class="step">4 Confirmation</div>
+</div>
+
+<form class="form-contact">
+  <label>Title
+    <select [(ngModel)]="title">
+      <option>Mr.</option>
+      <option>Ms.</option>
+    </select>
+  </label>
+
+  <label class="checkbox-label">
+    <input type="checkbox" [(ngModel)]="useRegisteredData" name="useRegisteredData" (change)="fillRegisteredData()">
+    Use name and email from registered data
+  </label>
+
+  <label for="name">Name</label>
+  <input id="name" name="name" [(ngModel)]="name" [readonly]="useRegisteredData">
+
+  <label for="email">Email</label>
+  <input id="email" name="email" [(ngModel)]="email" [readonly]="useRegisteredData">
+
+  <button (click)="proceed()">PROCEED</button>
+</form>
+
+<div class="sidebar">
+  <p>{{ searchInfo.checkInDate }} → {{nextDay}}</p>
+  <h3>{{ room.name }}</h3>
+  <div class="image">
+    <img [src]="room.imageUrl" [alt]="room.name" />
+    <div class="rating">
+      <span class="stars">{{ room.rating }}</span>
+      <span class="reviews">({{ room.reviewsCount }} reviews)</span>
+    </div>
+  </div>
+  <p>Room: S${{ room.price.toFixed(2) }}</p>
+  <p>Tax & Charges (9%): S${{ (room.price * 0.09).toFixed(2) }}</p>
+  <strong>Total: S${{ (room.price * 1.09).toFixed(2) }}</strong>
+</div>

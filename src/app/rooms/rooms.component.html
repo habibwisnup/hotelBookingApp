@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="steps">
+  <div class="step active">1 Search</div>
+  <div class="step active">2 Select Room</div>
+  <div class="step">3 Contact Information</div>
+  <div class="step">4 Confirmation</div>
+</div>
+
+<p *ngIf="searchInfo?.checkInDate && searchInfo?.checkoutDate" class="date-range-info">
+  {{ searchInfo.checkInDate }} → {{ searchInfo.checkoutDate }}
+</p>
+
+
+<div class="room-list">
+  <div class="room" *ngFor="let room of rooms">
+    <img [src]="room.imageUrl" alt="Room Image" class="room-img">
+    <div class="room-info">
+      <h3>{{ room.hotel }}</h3>
+      <h4>{{ room.name }}</h4>
+      <p>{{ room.description }}</p>
+      <p>Price: ${{ room.price }}</p>
+      <p>Guest: {{ room.guestCount }}</p>
+      <p>Rating: {{ room.rating }} ({{ room.reviewsCount }} reviews)</p>
+      <button (click)="bookRoom(room)">Book Now</button>
+    </div>
+  </div>
+  <div *ngIf="rooms.length === 0" class="no-room">
+    <p>No rooms available for your search.</p>
+  </div>
+</div>

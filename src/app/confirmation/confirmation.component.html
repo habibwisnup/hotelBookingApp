@@ -1,0 +1,34 @@
+<app-header></app-header>>
+
+<div class="confirmation-container">
+  <h2>YOUR BOOKING HAS BEEN CONFIRMED</h2>
+  <p>We have sent your booking confirmation to the email address you have provided.</p>
+  <p>Check-in/Check-out: {{ booking.checkInDate }} → {{nextDay}}</p>
+  <p>Booking Confirmation Number: <strong>{{ confirmationNumber }}</strong></p>
+  <p>Total Price for 1 Night: <strong>S${{ booking.total.toFixed(2) }}</strong></p>
+
+  <div class="confirmation-box">
+    <div class="image">
+      <img [src]="booking.room.imageUrl" [alt]="booking.room.name" />
+      <div class="rating">
+        <span class="stars">{{ booking.room.rating }}</span>
+        <span class="reviews">({{ booking.room.reviewsCount }} reviews)</span>
+      </div>
+    </div>
+
+    <div>
+      <h3>{{ booking.room.name }}</h3>
+      <p>{{ booking.guestCount }} Guest</p>
+      <p>Room: S${{ booking.room.price.toFixed(2) }}</p>
+      <p>Tax & Charges (9%): S${{ (booking.room.price * 0.09).toFixed(2) }}</p>
+      <p class="total-price">Total Price: S${{ booking.total.toFixed(2) }}</p>
+      <p class="guest-info">
+        <strong>Guest:</strong> {{ booking.title }} {{ booking.name }} ({{ booking.email }})
+      </p>
+    </div>
+  </div>
+  <div class="actions">
+    <button (click)="goToDashboard()">Go to Dashboard</button>
+    <button (click)="goToHome()">Book Another Room</button>
+  </div>
+</div>

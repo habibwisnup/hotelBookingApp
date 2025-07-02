@@ -1,0 +1,193 @@
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  background: #f5f7fa;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  gap: 0.7rem;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  opacity: 0.7;
+  background: linear-gradient(90deg, #e3eafc 0%, #f5f7fa 100%);
+  color: #555;
+  border-radius: 8px;
+  margin: 0 2px;
+  padding: 0.7rem 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+  border: 1.5px solid #e3eafc;
+}
+
+.step.active {
+  opacity: 1;
+  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  color: #fff;
+  border: 1.5px solid #007bff;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+}
+
+.room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 0;
+}
+
+.room {
+  display: flex;
+  background: #f7f9fc;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  padding: 1.5rem 1rem;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.room:hover {
+  box-shadow: 0 6px 24px rgba(0,123,255,0.10);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.room-img {
+  width: 50%;
+  height: 220px;
+  max-width: none;
+  object-fit: contain;
+  border-radius: 10px;
+  flex: 1 1 50%;
+  aspect-ratio: 16/7;
+}
+
+.room-info {
+  flex: 1 1 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.room-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #007bff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.room-info p {
+  margin: 0.1rem 0;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+.room-info .price {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin-top: 0.2rem;
+}
+
+.room-info .guest {
+  color: #555;
+  font-size: 1rem;
+}
+
+.room-info .rating {
+  color: #f39c12;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+button {
+  margin-top: 0.8rem;
+  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  color: white;
+  padding: 0.55rem 1.5rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,123,255,0.07);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #0056b3 0%, #007bff 100%);
+  box-shadow: 0 2px 8px rgba(0,123,255,0.13);
+}
+
+.no-room {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+.date-range-info {
+  display: inline-block;
+  background: linear-gradient(90deg, #e3f0ff 0%, #f7f9fc 100%);
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 8px 22px;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.06);
+  margin: 18px 0 24px 0;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .room {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .room-img {
+    width: 100%;
+    height: 180px;
+    margin-right: 0;
+    margin-bottom: 0.7rem;
+  }
+  .sidebar {
+    width: 80vw;
+    max-width: 320px;
+    padding: 1.5rem 1rem 1rem 1.2rem;
+  }
+  .menu-btn {
+    top: 10px;
+    left: 10px;
+    font-size: 1.7rem;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .steps {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.7rem;
+    font-size: 14px;
+  }
+  .room {
+    padding: 0.7rem;
+  }
+  .room-info h3 {
+    font-size: 1.1rem;
+  }
+  button {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
