@@ -54,5 +54,3 @@ The application is deployed to Netlify:
 
 🔗 [https://courageous-paletas-1f7345.netlify.app](https://courageous-paletas-1f7345.netlify.app)
 
-For SPA routing support, ensure the `_redirects` file contains:
-
