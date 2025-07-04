@@ -1,0 +1,11 @@
+<div class="steps steps-over-image">
+  <div
+    class="step"
+    *ngFor="let step of steps; let i = index"
+    [class.active]="i < activeStep"
+    [class.clickable]="i < activeStep"
+    (click)="navigateToStep(i)"
+  >
+    {{ step }}
+  </div>
+</div>

@@ -2,24 +2,73 @@ body {
   background: #f8fafc;
 }
 
+.hero {
+  margin-top: 2rem;
+}
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.steps-over-image {
+  margin-top: -2.2rem;
+  margin-bottom: 2.2rem;
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 0.7rem 1.5rem;
+}
+
+.contact-content {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 0;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1050px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+  padding-top: 2.2rem;
+}
+
 .form-contact {
-  width: 60%;
-  float: left;
-  padding: 2rem 1.5rem 2rem 0;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  width: 58%;
+  min-width: 280px;
+  max-width: 1020px;
   margin-bottom: 2rem;
 }
 .sidebar {
-  width: 35%;
-  float: right;
-  background: #444;
-  color: #fff;
-  padding: 2rem 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  min-height: 420px;
+  width: 38%;
+  min-width: 260px;
+  max-width: 420px;
+  margin-top: 0;
+  background: #fff;
+  color: #222;
+  box-shadow: 0 4px 24px rgba(0,123,255,0.10);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 480px;
+  position: relative;
 }
 label {
   display: block;
@@ -29,7 +78,32 @@ label {
 }
 input, select {
   display: block;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 7px;
+  border: 1.5px solid #d1d5db;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+input[type="text"],
+input[type="email"] {
   width: 100%;
+  display: block;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 7px;
+  border: 1.5px solid #d1d5db;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+
+select {
+  width: 100%;
+  display: block;
   padding: 0.7rem 1rem;
   margin-bottom: 1.2rem;
   border-radius: 7px;
@@ -46,40 +120,44 @@ input:focus, select:focus {
 .steps {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.2rem;
   background: #f5f7fa;
-  padding: 1rem;
-  font-weight: bold;
-  border-radius: 12px;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  gap: 0.7rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 32px;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  gap: 1.2rem;
+  overflow: auto;
 }
 
 .step {
   flex: 1;
   text-align: center;
   opacity: 0.7;
-  background: linear-gradient(90deg, #e3eafc 0%, #f5f7fa 100%);
-  color: #555;
-  border-radius: 8px;
+  background: #fff;
+  color: #007bff;
+  border-radius: 24px;
   margin: 0 2px;
   padding: 0.7rem 0.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-  transition: opacity 0.2s, background 0.2s, color 0.2s;
-  border: 1.5px solid #e3eafc;
+  box-shadow: 0 1px 8px rgba(0,123,255,0.04);
+  border: 2px solid #e3eafc;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  position: relative;
 }
 
 .step.active {
   opacity: 1;
-  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  background: #5EABD6;
   color: #fff;
-  border: 1.5px solid #007bff;
-  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  box-shadow: 0 4px 16px rgba(0,123,255,0.13);
+  z-index: 1;
 }
+
 button {
   margin-top: 0.5rem;
-  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  background: #5EABD6;
   color: white;
   padding: 0.6rem 2.2rem;
   border: none;
@@ -92,7 +170,7 @@ button {
   letter-spacing: 1px;
 }
 button:hover {
-  background: linear-gradient(90deg, #0056b3 0%, #007bff 100%);
+  background: #5EABD6;
   box-shadow: 0 2px 8px rgba(0,123,255,0.13);
 }
 
@@ -100,50 +178,192 @@ button:hover {
   color: #fff;
 }
 
+.sidebar .image {
+  width: 100%;
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+
 .sidebar img {
   width: 100%;
-  height: auto;
-  max-height: 260px;
+  max-width: 340px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 10px;
-  margin: 1rem 0;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  margin: 0 0 0.7rem 0;
+  box-shadow: 0 2px 12px rgba(0,123,255,0.08);
   display: block;
 }
 
-.sidebar p, .sidebar span {
-  color: #e3eafc;
-  font-size: 1.05rem;
-  margin-bottom: 0.7rem;
+.sidebar h3 {
+  color: #007bff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sidebar .rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+  color: #f39c12;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.sidebar .reviews {
+  color: #888;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.sidebar p {
+  color: #444;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sidebar strong {
+  color: #222;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 0.7rem;
+  display: block;
+  text-align: center;
+}
+
+.sidebar .price, .sidebar .tax {
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 0.2rem;
+}
+
+.sidebar .total {
+  color: #222;
+  font-weight: 700;
+  font-size: 1.13rem;
+  margin-top: 1.1rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.sidebar .date-range-info {
+  background: linear-gradient(90deg, #e3f0ff 0%, #f7f9fc 100%);
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 8px 22px;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.06);
+  margin: 0 0 0 0;
+  letter-spacing: 1px;
+  text-align: center;
+  display: block;
+}
+
+.form-contact label {
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  font-size: 1.08rem;
+  display: block;
+  letter-spacing: 0.2px;
+}
+
+.form-contact input[type="text"],
+.form-contact input[type="email"],
+.form-contact select {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 10px;
+  border: 1.5px solid #b3d7f5;
+  font-size: 1.08rem;
+  background: #f8fafc;
+  color: #222;
+  margin-bottom: 1.1rem;
+  box-sizing: border-box;
+  transition: border 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  box-shadow: 0 1px 4px rgba(0,150,136,0.04);
+}
+
+.form-contact input[type="text"]:focus,
+.form-contact input[type="email"]:focus,
+.form-contact select:focus {
+  border: 1.5px solid #009688;
+  outline: none;
+  background: #e0f7fa;
+  box-shadow: 0 2px 8px rgba(0,150,136,0.08);
+}
+
+.form-contact input[readonly] {
+  background: #f1f5f9;
+  color: #888;
 }
 
 .form-contact .checkbox-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 500;
-  color: #222;
-  margin-bottom: 1.2rem;
-  margin-top: -0.5rem;
+  font-weight: 400;
   font-size: 1rem;
+  margin-bottom: 1.1rem;
+  justify-content: flex-start;
+  width: fit-content;
 }
 
-.form-contact input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #007bff;
-  margin: 0;
+.form-contact button[type="button"] {
+  margin-top: 0.7rem;
+  padding: 0.7rem 2.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #5EABD6;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,123,255,0.08);
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.form-contact button[type="button"]:hover {
+  background: #5EABD6;
 }
 
 @media (max-width: 1100px) {
+  .contact-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    max-width: 98vw;
+    padding-top: 1.2rem;
+  }
   .form-contact, .sidebar {
     width: 100%;
-    float: none;
+    min-width: unset;
+    max-width: unset;
     margin: 0 0 1.5rem 0;
     min-height: unset;
   }
   .sidebar {
     margin-top: 2rem;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-contact {
+    width: 100%;
+    min-width: unset;
   }
 }
 
@@ -152,14 +372,8 @@ button:hover {
     padding: 1rem 0.5rem;
     border-radius: 8px;
   }
-  .steps {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.7rem;
-    font-size: 14px;
-  }
-  button {
-    width: 100%;
-    font-size: 1rem;
+  .sidebar img {
+    height: 120px;
+    max-width: 100%;
   }
 }

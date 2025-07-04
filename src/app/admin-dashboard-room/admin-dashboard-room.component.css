@@ -138,7 +138,7 @@ h2 {
 }
 
 .inline-form button, .room-form button {
-  background: #007bff;
+  background: #00796b;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -150,7 +150,7 @@ h2 {
 }
 
 .inline-form button:hover, .room-form button:hover {
-  background: #0056b3;
+  background: #00796b;
 }
 
 .admin-stats-row {
@@ -200,7 +200,7 @@ h2 {
 }
 
 .hotel-list {
-  border: 2px solid #007bff;
+  border: 2px solid #00796b;
   background: #e3f0ff;
   margin-bottom: 2rem;
   border-radius: 12px;
@@ -236,7 +236,7 @@ h2 {
 }
 
 .room-list {
-  border: 2px solid #28a745;
+  border: 2px solid #00796b;
   background: #eafaf1;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(40,167,69,0.06);
@@ -244,14 +244,14 @@ h2 {
 }
 
 .room-list li {
-  border-left: 4px solid #28a745;
+  border-left: 4px solid #00796b;
   background: #f8fdfb;
 }
 
 .room-list-title {
   font-size: 1.18rem;
   font-weight: bold;
-  color: #28a745;
+  color: #00796b;
   margin-bottom: 0.7rem;
   letter-spacing: 1px;
   padding-left: 0.2rem;
@@ -358,53 +358,81 @@ small {
   width: 100%;
 }
 
-.room-form .form-row {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 0;
-}
-
-.room-form .form-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.room-form label {
+  color: #009688;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  display: block;
 }
 
 .room-form input,
-.room-form select {
+.room-form select,
+.room-form textarea {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #b3d7f5;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+  transition: border 0.2s;
+  font-family: inherit;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 0.5rem;
 }
 
-.room-form button[type="submit"] {
-  margin-top: 10px;
-  padding: 8px 18px;
-  width: 180px;
-  align-self: flex-end;
+.room-form input:focus,
+.room-form select:focus,
+.room-form textarea:focus {
+  border: 1.5px solid #009688;
+  outline: none;
+  background: #e0f7fa;
 }
 
-.room-badge {
-  display: inline-block;
-  background: #28a745;
+.room-form .form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 0.7rem;
+}
+
+.room-form .form-group {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-form button,
+.room-list button {
+  background: #009688;
   color: #fff;
-  font-size: 0.85em;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 2px 10px;
-  margin-left: 0.5rem;
-  vertical-align: middle;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0,150,136,0.04);
+  margin-right: 0.5rem;
 }
 
-.hotel-badge {
-  display: inline-block;
-  background: #007bff;
-  color: #fff;
-  font-size: 0.85em;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 2px 10px;
-  margin-left: 0.5rem;
-  vertical-align: middle;
+.room-form button:hover,
+.room-list button:hover {
+  background: #00796b;
+}
+
+.room-form .cancel-btn {
+  background: #888;
+}
+.room-form .cancel-btn:hover {
+  background: #555;
+}
+.room-form .delete-btn {
+  background: #e53935;
+}
+.room-form .delete-btn:hover {
+  background: #b71c1c;
 }
 
 @media (max-width: 900px) {
@@ -459,4 +487,53 @@ small {
     left: unset;
     bottom: unset;
   }
+}
+
+form.room-form {
+  margin-bottom: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+form.room-form .form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+form.room-form .form-group {
+  flex: 1 1 0;
+}
+
+form.room-form input,
+form.room-form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form.room-form button[type="submit"] {
+  margin-top: 10px;
+  padding: 8px 18px;
+  width: 180px;
+  align-self: flex-end;
+}
+
+.custom-alert {
+  background: #ffe0e0;
+  color: #b71c1c;
+  border: 1px solid #f44336;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(244,67,54,0.08);
+  letter-spacing: 0.2px;
+  display: block;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
 }

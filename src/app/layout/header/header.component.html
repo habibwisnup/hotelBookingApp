@@ -1,22 +1,15 @@
 <div class="navbar">
   <div class="navbar-container">
-    <div class="navbar-left">
-      <button class="back-btn" (click)="goBack()"><</button>
-      <div class="navbar-brand">Hotel Booking</div>
+    <div class="navbar-brand">Habib</div>
+    <div class="navbar-links">
+      <a (click)="navigate('home')">Home</a>
+      <a (click)="navigate('dashboard')">Dashboard</a>
+      <a (click)="navigate('profile')">Profile</a>
     </div>
-
-    <div class="menu-container">
-      <button class="menu-btn" (click)="toggleSidebar()">☰</button>
-
-      <div class="sidebar" [ngClass]="{ 'open': sidebarOpen }">
-        <div class="sidebar-brand">Menu</div>
-        <div class="sidebar-links">
-          <a (click)="navigate('home')">Home</a>
-          <a (click)="navigate('dashboard')">Dashboard</a>
-          <a (click)="navigate('profile')">Profile</a>
-        </div>
-        <button class="logout-btn" (click)="logout()">Logout</button>
-      </div>
+    <div class="navbar-actions">
+      <button class="signup-btn" *ngIf="!isLoggedIn" (click)="navigate('register')">Sign up</button>
+      <button class="login-btn" *ngIf="!isLoggedIn" (click)="navigate('login')">Login</button>
+      <button class="logout-btn" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
   </div>
 </div>

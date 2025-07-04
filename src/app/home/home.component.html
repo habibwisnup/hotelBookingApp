@@ -2,36 +2,58 @@
 
 <div class="hero">
   <div class="hero-image">
-    <img src="https://indianz.com/IndianGaming/2017/10/23/palacasinoexpansion.jpg" alt="Hotel Image">
-  </div>
-  <h2>BOOK A ROOM</h2>
-  <div class="form-container">
-    <div class="form-fields">
-      <div class="form-group">
-        <label for="guestCount">Guest Count</label>
-        <select id="guestCount" [(ngModel)]="guestCount">
-          <option *ngFor="let guest of [1,2,3,4]" [value]="guest">{{ guest }} Guest(s)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="checkInDate">Check-in Date</label>
-        <input id="checkInDate" type="date" [(ngModel)]="checkInDate" placeholder="Check-in Date">
-      </div>
-      <div class="form-group">
-        <label for="checkoutDate">Check-out Date</label>
-        <input id="checkoutDate" type="date" [(ngModel)]="checkoutDate" placeholder="Check-out Date">
-      </div>
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Hotel Room" />
+    <div class="hero-text">
+      <h1>Book your stay with Habib</h1>
+      <p>1,480,086 rooms around the world are waiting for you!</p>
     </div>
-    <div class="form-actions">
-      <button 
-        (click)="searchRooms()" 
-        [disabled]="!checkInDate || !checkoutDate"
-        [ngClass]="{'disabled-btn': !checkInDate || !checkoutDate}">
-        SEARCH FOR ROOMS
+  </div>
+  <div class="form-search-bar">
+    <div class="form-search-fields">
+      <div class="form-search-group" style="position:relative;">
+        <label>Hotel Name</label>
+        <input type="text"
+               placeholder="Type hotel name..."
+               [(ngModel)]="hotelName"
+               (input)="onHotelNameInput()"
+               (focus)="showSuggestions = true"
+               (blur)="hideSuggestions()"
+               autocomplete="off" />
+        <ul *ngIf="showSuggestions && filteredHotels.length > 0" class="suggestion-list">
+          <li *ngFor="let hotel of filteredHotels" (mousedown)="selectHotel(hotel)">
+            {{ hotel.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="form-search-group">
+        <label>Check-in</label>
+        <input type="date" [(ngModel)]="checkInDate" />
+      </div>
+      <div class="form-search-group">
+        <label>Check-out</label>
+        <input type="date" [(ngModel)]="checkoutDate" />
+      </div>
+      <div class="form-search-group">
+        <label>Guests</label>
+        <input type="number" min="1" max="10" [(ngModel)]="guestCount" placeholder="Number of guests" />
+      </div>
+      
+      <button class="search-btn" (click)="searchRooms()" [disabled]="!checkInDate || !checkoutDate || !hotelName">
+        <span>&#8594;</span>
       </button>
     </div>
     <div *ngIf="showDateError" class="error-msg">
-      Tanggal check-in dan check-out wajib diisi!
+      Lengkapi lokasi, tanggal check-in, dan check-out!
+    </div>
+  </div>
+</div>
+
+<div class="popular-section">
+  <h2>Popular destinations</h2>
+  <div class="popular-destinations">
+    <div *ngFor="let room of popularRooms" class="destination-card" (click)="goToRooms(room.name)">
+      <img [src]="room.imageUrl" alt="{{room.name}}">
+      <div class="destination-label">{{ room.name }}</div>
     </div>
   </div>
 </div>

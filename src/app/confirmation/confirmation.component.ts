@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../layout/header/header.component";
 import { LayoutModule } from '../layout/layout.module';
+import { BookingStepsComponent } from '../booking-steps/booking-steps.component';
 
 @Component({
   selector: 'app-confirmation',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent, LayoutModule],
+  imports: [CommonModule, FormsModule, HeaderComponent, LayoutModule, BookingStepsComponent],
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.css']
 })

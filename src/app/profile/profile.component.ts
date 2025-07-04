@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   updateProfile() {

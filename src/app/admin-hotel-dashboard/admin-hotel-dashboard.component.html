@@ -1,0 +1,101 @@
+<div class="admin-dashboard-layout">
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin Avatar" class="sidebar-avatar">
+      <div class="sidebar-title">HOTEL</div>
+    </div>
+    <nav class="sidebar-menu">
+      <a class="sidebar-link active" (click)="navigate('admin-dashboard')">
+        <span class="icon">📊</span> Dashboard
+      </a>
+      <a class="sidebar-link active" (click)="navigate('admin-hotel-dashboard')">
+        <span class="icon">🏨</span> Hotel List
+      </a>
+      <a class="sidebar-link active" (click)="navigate('admin-dashboard-room')">
+        <span class="icon">🛏️</span> Room List
+      </a>
+    </nav>
+  </aside>
+  <main class="admin-dashboard-main">
+
+    <button class="logout-btn" (click)="logout()">Logout</button>
+    <h2>Admin Dashboard</h2>
+
+    <div class="section">
+      <div class="hotel-list-title">Hotel List</div>
+      <form (ngSubmit)="addHotel()" class="inline-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hotelName">Hotel Name</label>
+            <input id="hotelName" [(ngModel)]="newHotelName" name="hotelName" placeholder="Hotel Name" required>
+          </div>
+          <div class="form-group">
+            <label for="hotelAddress">Address</label>
+            <textarea id="hotelAddress" [(ngModel)]="newHotelAddress" name="hotelAddress" placeholder="Address" rows="2" required></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hotelPhone">Phone</label>
+            <input id="hotelPhone" [(ngModel)]="newHotelPhone" name="hotelPhone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <label for="hotelDescription">Description</label>
+            <textarea id="hotelDescription" [(ngModel)]="newHotelDescription" name="hotelDescription" placeholder="Description" rows="2" required></textarea>
+          </div>
+        </div>
+        <div class="form-row" style="justify-content: flex-end;">
+          <button type="submit" class="primary-btn">Add Hotel</button>
+        </div>
+      </form>
+      <ul class="hotel-list">
+        <li *ngFor="let hotel of hotels; let i = index">
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+            <ng-container *ngIf="editHotelIndex !== i; else editForm">
+              <b>{{ hotel.name }}</b>
+              <span><small>{{ hotel.address }}</small></span>
+              <span><small>{{ hotel.phone }}</small></span>
+              <span><small>{{ hotel.description }}</small></span>
+            </ng-container>
+            <ng-template #editForm>
+              <form class="inline-form" style="margin-bottom:0; box-shadow:none; background:transparent; padding:0;">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="editHotelName-{{i}}">Hotel Name</label>
+                    <input id="editHotelName-{{i}}" [(ngModel)]="editHotelName" placeholder="Hotel Name" name="editHotelName">
+                  </div>
+                  <div class="form-group">
+                    <label for="editHotelAddress-{{i}}">Address</label>
+                    <textarea id="editHotelAddress-{{i}}" [(ngModel)]="editHotelAddress" rows="2" placeholder="Address" name="editHotelAddress"></textarea>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="editHotelPhone-{{i}}">Phone</label>
+                    <input id="editHotelPhone-{{i}}" [(ngModel)]="editHotelPhone" placeholder="Phone" name="editHotelPhone">
+                  </div>
+                  <div class="form-group">
+                    <label for="editHotelDescription-{{i}}">Description</label>
+                    <textarea id="editHotelDescription-{{i}}" [(ngModel)]="editHotelDescription" rows="2" placeholder="Description" name="editHotelDescription"></textarea>
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <label>
+              <input type="checkbox" [checked]="hotel.ready" (change)="toggleHotelReady(hotel)"> Ready
+            </label>
+            <button (click)="openManageRoom(hotel)" class="primary-btn secondary">Manage Room</button>
+            <div>
+              <button *ngIf="editHotelIndex !== i" (click)="startEditHotel(i)" class="primary-btn edit">Edit</button>
+              <button *ngIf="editHotelIndex === i" (click)="saveEditHotel(i)" class="primary-btn save">Save</button>
+              <button *ngIf="editHotelIndex === i" (click)="cancelEditHotel()" class="primary-btn cancel">Cancel</button>
+              <button (click)="removeHotel(i)" class="danger-btn">Delete</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+</div>

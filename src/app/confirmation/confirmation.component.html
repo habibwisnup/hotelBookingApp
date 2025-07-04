@@ -1,6 +1,14 @@
-<app-header></app-header>>
+<app-header></app-header>
 
-<div class="confirmation-container">
+<div class="hero">
+  <div class="hero-image">
+    <img [src]="booking.room.imageUrl || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'" alt="Hotel Room" />
+  </div>
+</div>
+
+<app-booking-steps [activeStep]="4"></app-booking-steps>
+
+<div class="confirmation-container confirmation-content">
   <h2>YOUR BOOKING HAS BEEN CONFIRMED</h2>
   <p>We have sent your booking confirmation to the email address you have provided.</p>
   <p>Check-in/Check-out: {{ booking.checkInDate }} → {{nextDay}}</p>

@@ -53,10 +53,16 @@ export class LoginComponent implements OnInit {
       this.showSuccess = true;
       setTimeout(() => {
         this.showSuccess = false;
-        if (userData.role === 'admin') {
+        const redirect = localStorage.getItem('redirectAfterLogin');
+        if (redirect) {
+          localStorage.removeItem('redirectAfterLogin');
+          this.router.navigate([redirect]);
+        } else {
+         if (userData.role === 'admin') {
           this.router.navigate(['/admin-dashboard']);
         } else {
           this.router.navigate(['/home']);
+        }
         }
       }, 1200);
     } catch (error: any) {

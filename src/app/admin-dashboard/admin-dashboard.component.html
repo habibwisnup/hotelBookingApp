@@ -1,118 +1,39 @@
-<div class="admin-dashboard">
-  <button class="logout-btn" (click)="logout()">Logout</button>
-  <h2>Admin Dashboard</h2>
-
-  <div class="section">
-    <div class="hotel-list-title">Hotel List</div>
-    <form (ngSubmit)="addHotel()" class="inline-form">
-      <input [(ngModel)]="newHotelName" name="hotelName" placeholder="Hotel Name" required>
-      <button type="submit">Add Hotel</button>
-    </form>
-    <ul class="hotel-list">
-      <li *ngFor="let hotel of hotels; let i = index">
-        <span *ngIf="editHotelIndex !== i">{{ hotel.name }}</span>
-        <input *ngIf="editHotelIndex === i" [(ngModel)]="editHotelName" style="flex:1; margin-right:8px;">
-        <label>
-          <input type="checkbox" [checked]="hotel.ready" (change)="toggleHotelReady(hotel)"> Ready
-        </label>
-        <button *ngIf="editHotelIndex !== i" (click)="startEditHotel(i)">Edit</button>
-        <button *ngIf="editHotelIndex === i" (click)="saveEditHotel(i)" style="background:#28a745;">Save</button>
-        <button *ngIf="editHotelIndex === i" (click)="cancelEditHotel()" style="background:#888;">Cancel</button>
-        <button (click)="removeHotel(i)">Delete</button>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <div class="room-list-title">Room List</div>
-    <form (ngSubmit)="addRoom()" class="room-form">
-      <div class="form-group">
-        <label class="input-label">Room Name</label>
-        <input [(ngModel)]="newRoomName" name="roomName" placeholder="Room Name" required>
+<div class="admin-dashboard-layout">
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin Avatar" class="sidebar-avatar">
+      <div class="sidebar-title">HOTEL</div>
+    </div>
+    <nav class="sidebar-menu">
+      <a class="sidebar-link active" (click)="navigate('admin-dashboard')">
+        <span class="icon">📊</span> Dashboard
+      </a>
+      <a class="sidebar-link active" (click)="navigate('admin-hotel-dashboard')">
+        <span class="icon">🏨</span> Hotel List
+      </a>
+      <a class="sidebar-link active" (click)="navigate('admin-dashboard-room')">
+        <span class="icon">🛏️</span> Room List
+      </a>
+    </nav>
+  </aside>
+  <main class="admin-dashboard-main">
+    <div class="admin-stats-row">
+      <div class="admin-stat-card">
+        <div class="stat-icon stat-user"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#009688" stroke-width="2"/><path d="M4 20c0-2.5 3.5-4 8-4s8 1.5 8 4" stroke="#009688" stroke-width="2"/></svg></div>
+        <div class="stat-value">{{ totalBooking }}</div>
+        <div class="stat-label">Total Booking</div>
       </div>
-      <div class="form-group">
-        <label class="input-label">Hotel</label>
-        <select [(ngModel)]="newRoomHotel" name="roomHotel" required>
-          <option [ngValue]="null" disabled selected>Select Hotel</option>
-          <option *ngFor="let hotel of hotels" [ngValue]="hotel.name">{{ hotel.name }}</option>
-        </select>
+      <div class="admin-stat-card">
+        <div class="stat-icon stat-room"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="8" rx="2" stroke="#009688" stroke-width="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3" stroke="#009688" stroke-width="2"/></svg></div>
+        <div class="stat-value">{{ availableRoomCount }}</div>
+        <div class="stat-label">Available Rooms</div>
       </div>
-      <div class="form-group">
-        <label class="input-label">Price</label>
-        <input [(ngModel)]="newRoomPrice" name="roomPrice" type="number" placeholder="Price" required>
+      <div class="admin-stat-card">
+        <div class="stat-icon stat-user"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#009688" stroke-width="2"/><path d="M4 20c0-2.5 3.5-4 8-4s8 1.5 8 4" stroke="#009688" stroke-width="2"/></svg></div>
+        <div class="stat-value">{{ totalUser }}</div>
+        <div class="stat-label">Total Users</div>
       </div>
-      <div class="form-group">
-        <label class="input-label">Description</label>
-        <input [(ngModel)]="newRoomDescription" name="roomDescription" placeholder="Description" required>
-      </div>
-      <div class="form-group">
-        <label class="input-label">Image URL</label>
-        <input [(ngModel)]="newRoomImageUrl" name="roomImageUrl" placeholder="Image URL" required>
-      </div>
-      <div class="form-group">
-        <label class="input-label">Guest Count</label>
-        <input [(ngModel)]="newRoomGuestCount" name="roomGuestCount" type="number" min="1" placeholder="Guest Count" required>
-      </div>
-      <div class="form-group">
-        <label class="input-label">Start Date</label>
-        <input [(ngModel)]="newRoomDateStart" name="roomDateStart" type="date" placeholder="Start Date" required>
-      </div>
-      <div class="form-group">
-        <label class="input-label">End Date</label>
-        <input [(ngModel)]="newRoomDateEnd" name="roomDateEnd" type="date" placeholder="End Date" required>
-      </div>
-      <div class="form-row" style="justify-content: flex-end;">
-        <button type="submit">Add Room</button>
-      </div>
-    </form>
-    <ul class="room-list">
-      <li *ngFor="let room of rooms; let i = index">
-        <span *ngIf="editRoomIndex !== i">
-          <img [src]="room.imageUrl" alt="Room Image" class="room-img">
-          <b>{{ room.name }}</b> <small>({{ room.hotel }})</small><br>
-          <span>Price: ${{ room.price }}</span><br>
-          <span>Guest: {{ room.guestCount }}</span><br>
-          <span>{{ room.description }}</span><br>
-          <span>Available Dates: {{ room.availableDates ? room.availableDates.join(', ') : '-' }}</span>
-        </span>
-        <span *ngIf="editRoomIndex === i" style="flex:1;display:flex;flex-direction:column;gap:8px;">
-          <input [(ngModel)]="editRoomName" placeholder="Room Name">
-          <select [(ngModel)]="editRoomHotel">
-            <option *ngFor="let hotel of hotels" [ngValue]="hotel.name">{{ hotel.name }}</option>
-          </select>
-          <input [(ngModel)]="editRoomPrice" type="number" placeholder="Price">
-          <input [(ngModel)]="editRoomGuestCount" type="number" min="1" placeholder="Guest Count">
-          <input [(ngModel)]="editRoomDescription" placeholder="Description">
-          <div>
-            <label style="font-size:0.97em;">Available Dates:</label>
-            <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px;">
-              <input [(ngModel)]="editRoomDateStart" type="date" style="width:auto;">
-              <input [(ngModel)]="editRoomDateEnd" type="date" style="width:auto;">
-              <button type="button" (click)="addEditRoomDateRange()" style="padding:2px 10px;">Add Range</button>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span *ngFor="let date of editRoomAvailableDates" style="background:#e3f0ff;padding:2px 8px;border-radius:5px;">
-                {{date}}
-                <button type="button" (click)="removeEditRoomAvailableDate(date)" style="margin-left:3px;background:#dc3545;color:white;border:none;border-radius:3px;padding:2px 6px;">&times;</button>
-              </span>
-            </div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span *ngIf="editRoomAvailableDates.length === 2" style="background:#e3f0ff;padding:2px 8px;border-radius:5px;">
-              {{editRoomAvailableDates[0]}} &rarr; {{editRoomAvailableDates[1]}}
-              <button type="button" (click)="editRoomAvailableDates=[]"
-                style="margin-left:6px;background:#dc3545;color:white;border:none;border-radius:3px;padding:2px 6px;">&times;</button>
-            </span>
-          </div>
-        </span>
-        <label *ngIf="editRoomIndex !== i">
-          <input type="checkbox" [checked]="room.available" (change)="toggleRoomAvailable(room)"> Available
-        </label>
-        <button *ngIf="editRoomIndex !== i" (click)="startEditRoom(i)">Edit</button>
-        <button *ngIf="editRoomIndex === i" (click)="saveEditRoom(i)" style="background:#28a745;">Save</button>
-        <button *ngIf="editRoomIndex === i" (click)="cancelEditRoom()" style="background:#888;">Cancel</button>
-        <button (click)="removeRoom(i)">Delete</button>
-      </li>
-    </ul>
-  </div>
+    </div>
+    <button class="logout-btn" (click)="logout()">Logout</button>    
+  </main>
 </div>

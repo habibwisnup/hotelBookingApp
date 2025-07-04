@@ -15,8 +15,15 @@ import { Location } from '@angular/common';
 
 export class HeaderComponent {
   sidebarOpen = false;
+  isLoggedIn = false;
 
-  constructor(private router: Router, private location: Location) {}
+  constructor(private router: Router, private location: Location) {
+    this.isLoggedIn = !!localStorage.getItem('currentUser');
+  }
+
+  ngDoCheck() {
+    this.isLoggedIn = !!localStorage.getItem('currentUser');
+  }
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -30,7 +37,7 @@ export class HeaderComponent {
   logout(): void {
     this.sidebarOpen = false;
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
     console.log('User logged out');
   }
 

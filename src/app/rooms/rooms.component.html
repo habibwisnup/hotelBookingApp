@@ -1,31 +1,43 @@
 <app-header></app-header>
 
-<div class="steps">
-  <div class="step active">1 Search</div>
-  <div class="step active">2 Select Room</div>
-  <div class="step">3 Contact Information</div>
-  <div class="step">4 Confirmation</div>
-</div>
-
-<p *ngIf="searchInfo?.checkInDate && searchInfo?.checkoutDate" class="date-range-info">
-  {{ searchInfo.checkInDate }} → {{ searchInfo.checkoutDate }}
-</p>
-
-
-<div class="room-list">
-  <div class="room" *ngFor="let room of rooms">
-    <img [src]="room.imageUrl" alt="Room Image" class="room-img">
-    <div class="room-info">
-      <h3>{{ room.hotel }}</h3>
-      <h4>{{ room.name }}</h4>
-      <p>{{ room.description }}</p>
-      <p>Price: ${{ room.price }}</p>
-      <p>Guest: {{ room.guestCount }}</p>
-      <p>Rating: {{ room.rating }} ({{ room.reviewsCount }} reviews)</p>
-      <button (click)="bookRoom(room)">Book Now</button>
+<div class="hero">
+  <div class="hero-image">
+    <img [src]="searchInfo?.heroImage || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'" alt="Hotel Room" />
+    <div class="hero-text">
+      <h1>Please complete your Booking</h1>
     </div>
   </div>
-  <div *ngIf="rooms.length === 0" class="no-room">
-    <p>No rooms available for your search.</p>
+
+</div>
+
+<app-booking-steps [activeStep]="2"></app-booking-steps>
+
+<div class="rooms-content">
+  <p *ngIf="searchInfo?.checkInDate && searchInfo?.checkoutDate" class="date-range-info">
+    {{ searchInfo.checkInDate }} → {{ searchInfo.checkoutDate }}
+  </p>
+
+  <div class="room-list">
+    <div class="room" *ngFor="let room of rooms">
+      <img [src]="room.imageUrl || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'"
+           alt="Room Image" class="room-img"
+           (error)="onImgError($event)">
+      <div class="room-info">
+        <h3>{{ room.hotel || '-' }}</h3>
+        <h4>{{ room.name || '-' }}</h4>
+        <p>{{ room.description || '-' }}</p>
+        <p class="price">Price: ${{ room.price !== undefined && room.price !== null ? room.price : '-' }}</p>
+        <p class="guest">Guest: {{ room.guestCount !== undefined && room.guestCount !== null ? room.guestCount : '-' }}</p>
+        <p class="rating">
+          Rating:
+          {{ room.rating !== undefined && room.rating !== null ? room.rating : '-' }}
+          ({{ room.reviewsCount !== undefined && room.reviewsCount !== null ? room.reviewsCount : '0' }} reviews)
+        </p>
+        <button (click)="bookRoom(room)">Book Now</button>
+      </div>
+    </div>
+    <div *ngIf="rooms.length === 0" class="no-room">
+      <p>No rooms available for your search.</p>
+    </div>
   </div>
 </div>
